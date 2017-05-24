@@ -1,0 +1,52 @@
+body {
+    font-family: Verdana, sans-serif, arial;
+    font-size: 80%;
+    line-height: 1.2rem;
+
+}
+
+.page-wrap {
+    max-width: 1200px;
+    margin:  0 auto;
+}
+
+.time-container {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border:  1px solid #999;
+}
+
+.time p{
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+table#device-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin:  0 auto;
+    box-shadow: 0px 15px 20px #CCC;
+}
+
+table#device-table th {
+    text-align: left;
+    padding: 10px 0 ;
+}
+
+table#device-table td {
+   padding:  4px 0;
+
+}
+
+table#device-table tr:nth-child(2n) {
+    background-color: #f0f8ff;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}

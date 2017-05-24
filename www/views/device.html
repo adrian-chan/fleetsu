@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Fleetsu Device Report</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src="js/scripts.js"></script>
+
+</head>
+
+<body>
+
+    <div class='page-wrap'>
+    <h1>Device Status Report</h1>
+
+     <div class="time-container">
+         <div class="time">
+             <p>Current Time : {{ current }}</p>
+         </div>
+     </div>
+
+      <table id="device-table">
+            <thead>
+                <tr>
+                    <th>Device Id</th>
+                    <th>Device Name</th>
+                    <th>Last Reported Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+    </table>
+    </div>
+</body>
+</html>

@@ -1,5 +1,4 @@
 <?php
-
     require_once ('bootstrap.php');
 
     use Psr\Http\Message\ServerRequestInterface as Request;
@@ -8,46 +7,64 @@
     $app = new Slim\App($config);
 
     $app->get('/', function () {
+            echo "Fleetsu Assignment";
+        });
 
-    });
+    $container = $app->getContainer();
+
+    // Register Twig View helper
+    $container['view'] = function ($c) {
+        $view = new \Slim\Views\Twig(__DIR__ . '/views');
+
+        // Instantiate and add Slim specific extension
+        $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
+        $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+
+        return $view;
+    };
 
     //ROUTE FOR BACKEND API CALL
     $app->get('/device-status', function (Request $request, Response $response) {
 
-        // Load Data Source
-        $dataSource = __DIR__ . ('/datasource/device.csv');
-        $data = helpers::getFromCsv($dataSource);
+            // Load Data Source
+            $dataSource = __DIR__ . ('/datasource/device.csv');
+            $data = helpers::getFromCsv($dataSource);
 
-        // Process the status for each device
-        $withStatus = array_map(function ($row) {
+            // Process the status for each device
+            $withStatus = array_map(function ($row) {
 
-            // init checking parameters
-            $checkDate = new DateTime($row['Last Reported DateTime']);
-            $currDate  = new DateTime();
+                    // init checking parameters
+                    $checkDate = new DateTime($row['Last Reported DateTime']);
+                    $currDate  = new DateTime();
 
-            // 24 hour range
-            $tsRange = 60 * 60 * 24;
+                    // 24 hour range
+                    $tsRange = 60 * 60 * 24;
 
-            // process the status accordingly
-            $row['Status'] = (abs($currDate->getTimestamp() - $checkDate->getTimestamp()) <= $tsRange ) ? 'OK' : 'OFFLINE';
+                    // process the status accordingly
+                    $row['Status'] = (abs($currDate->getTimestamp() - $checkDate->getTimestamp()) <= $tsRange ) ? 'OK' : 'OFFLINE';
 
-            return $row;
+                    return $row;
 
-         }, $data);
+                }, $data);
 
-        $response->getBody()->write(json_encode($withStatus));
-        $newResponse = $response->withHeader(
-           'Content-type',
-           'application/json'
-        );
+            $response->getBody()->write(json_encode($withStatus));
+            $newResponse = $response->withHeader(
+                'Content-type',
+                'application/json'
+            );
 
-        return $newResponse;
-    });
+            return $newResponse;
+        });
 
     //ROUTE FOR FOR FRONTEND
-    $app->get('device-report', function () {
-            
-    });
+    $app->get('/device-report', function (Request $request, Response $response) {
+
+            $current = new DateTime();
+
+            $data["current"] = $current->format("Y-m-d h:m");
+
+           return $this->view->render($response, 'device.html', $data);
+        });
 
     $app->run();
 ?>
