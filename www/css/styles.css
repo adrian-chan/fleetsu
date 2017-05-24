@@ -36,11 +36,26 @@ table#device-table th {
 
 table#device-table td {
    padding:  4px 0;
-
 }
+
+table#device-table tr {
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+}
+
 
 table#device-table tr:nth-child(2n) {
     background-color: #f0f8ff;
+}
+
+table#device-table tr:hover {
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.02, 1.4);
+    box-shadow: 2px 2px 10px #CCC;
+    pointer: cursor;
 }
 
 .red {

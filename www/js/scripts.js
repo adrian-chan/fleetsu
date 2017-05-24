@@ -8,7 +8,10 @@
             return $.ajax({
                 type: 'GET',
                 url: this.url,
-                dataType: 'json'
+                dataType: 'json',
+                error: function (jxhr, t, thrown) {
+                    confirm( window.location.hostname + '/' + this.url + ' is a 404 error');
+                }
             });
         },
 
