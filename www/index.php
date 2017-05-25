@@ -39,9 +39,11 @@
 
                     // 24 hour range
                     $tsRange = 60 * 60 * 24;
+                    $tsDiff = $currDate->getTimestamp() - $checkDate->getTimestamp();
 
-                    // process the status accordingly
-                    $row['Status'] = (abs($currDate->getTimestamp() - $checkDate->getTimestamp()) <= $tsRange ) ? 'OK' : 'OFFLINE';
+                    // add to statuses to array for current row
+                    $row['Status'] = ($tsDiff <= $tsRange && $tsDiff >= 0 ) ? 'OK' : 'OFFLINE';
+                    $row['tsDiff'] = $tsDiff;
 
                     return $row;
 
