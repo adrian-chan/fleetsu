@@ -51,8 +51,8 @@ table#device-table tr:nth-child(2n) {
 }
 
 table#device-table tr:hover {
-    transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+    transform: scale(1.02, 1.5);
+    -webkit-transform: scale(1.02 ,1.5);
     -moz-transform: scale(1.02, 1.4);
     box-shadow: 2px 2px 10px #CCC;
     pointer: cursor;
