@@ -27,7 +27,7 @@
     $app->get('/device-status', function (Request $request, Response $response) {
 
             // Load Data Source
-            $dataSource = __DIR__ . ('/datasource/device.csv');
+            $dataSource = __DIR__ . ('/datasource/demo.csv');
             $data = helpers::getFromCsv($dataSource);
 
             // Process the status for each device
@@ -37,7 +37,7 @@
                     $checkDate = new DateTime($row['Last Reported DateTime']);
                     $currDate  = new DateTime();
 
-                    // 24 hour range
+                    // 24 hour range = 86400
                     $tsRange = 60 * 60 * 24;
                     $tsDiff = $currDate->getTimestamp() - $checkDate->getTimestamp();
 

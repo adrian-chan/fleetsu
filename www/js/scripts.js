@@ -30,7 +30,7 @@
                         "<td>" +  convertToLocalTime(row["Last Reported DateTime"]) + "</td>" +
                         "<td class=" + statusColor +">" + row["Status"] + "</td></tr>";
 
-                    console.log(row["Device ID"] + row["Device Label"] + convertToLocalTime(row["Last Reported DateTime"]) + row["Status"]);
+                    //console.log(row["Device ID"] + row["Device Label"] + convertToLocalTime(row["Last Reported DateTime"]) + row["Status"]);
                 });
 
                 $("#device-table tbody").append(html);
@@ -39,12 +39,8 @@
         }
     }
 
-    function convertToLocalTime(time) {
-        var date = new Date(time);
-        //date.toLocaleFormat('%d-%b-%Y');
-            //console.log((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());       
-
-            return date;
+    function convertToLocalTime(time) {        
+            return new Date(time);
     }
 
     $(document).ready(function() {
