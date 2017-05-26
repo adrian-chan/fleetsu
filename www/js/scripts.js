@@ -27,17 +27,24 @@
 
                     html += "<tr><td>" + row["Device ID"] + "</td>" +
                         "<td>" +  row["Device Label"] + "</td>" +
-                        "<td>" +  row["Last Reported DateTime"] + "</td>" +
+                        "<td>" +  convertToLocalTime(row["Last Reported DateTime"]) + "</td>" +
                         "<td class=" + statusColor +">" + row["Status"] + "</td></tr>";
 
-                    console.log(row["Device ID"] + row["Device Label"] + row["Last Reported DateTime"] + row["Status"]);
+                    console.log(row["Device ID"] + row["Device Label"] + convertToLocalTime(row["Last Reported DateTime"]) + row["Status"]);
                 });
 
                 $("#device-table tbody").append(html);
 
             });
-
         }
+    }
+
+    function convertToLocalTime(time) {
+        var date = new Date(time);
+        //date.toLocaleFormat('%d-%b-%Y');
+            //console.log((date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear());       
+
+            return date;
     }
 
     $(document).ready(function() {
